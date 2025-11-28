@@ -25,7 +25,6 @@ def createTransactionsTable():
     # Execute SQL
     cursor.execute(transactionsCreationQuery)
 
-    print(transactionsCreationQuery)
     # Commit changes
     conn.commit()
     # 
@@ -35,14 +34,17 @@ def createTransactionsTable():
 def addTransactions(trans_type,amount,category,description):
     conn, cursor = connectToDatabase()
     transactionsUpdate = """insert into TRANSACTIONS (trans_type, amount, category, description) VALUES (?,?,?,?)
-
+    
 """
     cursor.execute(transactionsUpdate, (trans_type, amount, category, description))
+    
     conn.commit()
     conn.close()
 
 def main():
     createTransactionsTable()
     addTransactions('INCOME',2500.69,'INCOME', "The Galactic Republic")
+    
+
 if __name__ == "__main__":
     main()   
